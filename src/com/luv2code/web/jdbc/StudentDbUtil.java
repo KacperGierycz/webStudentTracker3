@@ -56,14 +56,12 @@ public class StudentDbUtil {
 				 
 			}			
 			
-			return students;
-			
+			return students;			
 		}
 		finally {
 			// close JDBC object
 			close(myConn, myStmt, myRs);
-		}
-		
+		}		
 	}
 
 	private void close(Connection myConn, Statement myStmt, ResultSet myRs) {
@@ -79,15 +77,13 @@ public class StudentDbUtil {
 			
 			if(myRs!=null) {
 				myRs.close();	// doesn't really close it ... just puts back in connection pool
-			}
-			
+			}			
 			
 		}
 		catch (Exception exc) {
 			exc.printStackTrace();
 			
-		}
-		
+		}		
 	}
 	
 	
