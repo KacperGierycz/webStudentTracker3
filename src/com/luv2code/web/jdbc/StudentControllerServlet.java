@@ -43,8 +43,36 @@ public class StudentControllerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		try {
+			
+			// read the "command" parameter
+			String theCommand=request.getParameter("command");
+			
+			// if the command is missing the default to list students
+			if(theCommand==null) {
+				theCommand="LIST";
+			}
+			
+			// rout to the appropriate method
+			switch(theCommand) {
+			
+			case "LIST":
+				listStudents(request,response);
+				break;
+				
+			case "ADD":
+				addStudent(request, response);
+				break;
+				
+			default:
+				listStudents(request, response);
+				
+			
+			}
+			
+
+			
+			
 		// list the students ... in MVC fashion
-		listStudent(request,response);
 		}
 		catch (Exception exc) {
 			throw new ServletException(exc);
@@ -52,7 +80,26 @@ public class StudentControllerServlet extends HttpServlet {
 		
 	}
 
-	private void listStudent(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	private void addStudent(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		// read student info from form data
+		String firstName=request.getParameter("firstName");
+		String lastName=request.getParameter("lastName");
+		String email=request.getParameter("email");
+		
+		// create a new student object
+		Student theStudent = new Student(firstName, lastName, email);
+		
+		// add the student to the database
+		studentDbUtil.addStudent(theStudent);
+		
+		
+		// send back to main page (the student list)
+		listStudents(request,response);
+		
+	}
+
+	private void listStudents(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		// get students from dbutil
 		List<Student> students = studentDbUtil.getStudents();
