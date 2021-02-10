@@ -27,7 +27,7 @@
 	 <!--  put new button: Add Student -->
 	 <input type="button" value="Add Student"
 	 		onclick="window.location.href='add-student.jsp'; return false;"
-	 		class="add-stuben-button"
+	 		class="add-student-button"
 	 		/>
 	 
 	 	<table>
