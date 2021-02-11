@@ -12,12 +12,13 @@
 
 <body>
 	<div id="wrapper">
-		<div id="header">
-			<h2>FooBar University</h2>	
+	<div id="header">
+	<h2>FooBar University</h2>
 		</div>
-	</div>
+		</div>
 
 	<div id="container">
+	
 		<h3>Update Student</h3>
 		
 		<form action="StudentControllerServlet" method="GET">
@@ -59,6 +60,7 @@
 			</p>
 			
 	</div>
+
 
 </body>
 

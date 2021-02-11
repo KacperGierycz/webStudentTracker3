@@ -71,6 +71,10 @@ public class StudentControllerServlet extends HttpServlet {
 				updateStudent(request,response);
 				break;
 				
+			case "DELETE":
+				deleteStudent(request,response);
+				break;
+				
 			default:
 				listStudents(request, response);
 				
@@ -80,6 +84,19 @@ public class StudentControllerServlet extends HttpServlet {
 		catch (Exception exc) {
 			throw new ServletException(exc);
 		}
+		
+	}
+
+	private void deleteStudent(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		// read student id from form data
+		String theStudentId=request.getParameter("studentId");
+		
+		// delete student from databse
+		studentDbUtil.deleteStudent(theStudentId);
+		
+		// send them back to the "list student " page
+		listStudents(request, response);
 		
 	}
 
